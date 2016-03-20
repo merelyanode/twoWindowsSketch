@@ -1,5 +1,5 @@
 import javax.swing.*;
-//SecondApplet s;
+SecondApplet s;
 import controlP5.*;
 import java.util.Date;
 PImage img_1; 
@@ -57,7 +57,7 @@ void controlEvent(ControlEvent theEvent) {
             );
   }
 }
-/* 
+
 public class PFrame extends JFrame {
   public PFrame(int width, int height) {
     setBounds(100, 100, width, height);
@@ -68,10 +68,8 @@ public class PFrame extends JFrame {
     show();
     }
 }
- */
 public class SecondApplet extends PApplet {
  
-  //public class SecondApplet{
   public void setup() {
  
   }
