@@ -68,12 +68,15 @@ public class PFrame extends JFrame {
     show();
     }
 }
-
+ */
 public class SecondApplet extends PApplet {
+ 
+  //public class SecondApplet{
   public void setup() {
  
+  }
 }
-
+/*
 void draw() {
   //background(0);
   //image(img_1, 5, 0);
