@@ -75,39 +75,10 @@ public class SecondApplet extends PApplet {
   public void setup() {
  
   }
-}
-/*
-void draw() {
-  //background(0);
-  //image(img_1, 5, 0);
-  //image(img_2, 650,215);
-  //image(img_3, 850,645);
-  fill(0,255,0);
-  //text(cp5.get(Textfield.class,"input").getText(), 360,130);
-  text(textValue, 360,180);
-  //text(textValue, 360,360);
-  //println(mouseY);
-  for (i = 0; i < 10; i++){
-    //println(i);
-  }
-}
 
-public void clear() {
-  cp5.get(Textfield.class,"textValue").clear();
-  
-}
 
-void controlEvent(ControlEvent theEvent) {
-  if(theEvent.isAssignableFrom(Textfield.class)) {
-    println("controlEvent: accessing a string from controller '"
-            +theEvent.getName()+"': "
-            +theEvent.getStringValue()
-            );
-    }
-  }
-  */
 public void input(String theText) { //P5
-  //public void enteryourphrase(String theText) {
+  public void enteryourphrase(String theText) {
   // automatically receives results from controller input
   println("a mf textfield event for controller 'input' : "+theText);//P5
    Table table = loadTable("zooMockUpCSV.csv","header");//P5
@@ -124,8 +95,9 @@ newRow.setString("PHRASE", theText);//P5
 newRow.setString("TIMESTAMP", timestamp);//P5
 saveTable(table, "data/zooMockUpCSV.csv");//P5
 
-  }//P5
-
+    }//P5
+  }
+}
 
 
 
