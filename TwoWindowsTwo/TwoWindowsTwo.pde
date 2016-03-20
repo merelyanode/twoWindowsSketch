@@ -11,7 +11,7 @@ String timestamp;
 //int i;
 
  void setup() {
-  //PFrame f = new PFrame(1500,800);
+   PFrame f = new PFrame(1500,800);
   size(1500,800);
   fill(150, 0, 130);
   rect(10,20,30,40);
