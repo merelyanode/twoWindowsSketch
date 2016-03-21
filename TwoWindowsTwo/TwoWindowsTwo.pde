@@ -20,7 +20,7 @@ String timestamp;//P5
   img_3 = loadImage("instructions.png");//P5
  frame.setTitle("first window");
   f.setTitle("second window");
-  background(0,155,0);
+  background(255);
   PFont font = createFont("arial",20);//P5
   Date d = new Date();//P5
   println("1 " + d.getTime());//P5
@@ -70,6 +70,7 @@ public class PFrame extends JFrame {
     show();
     }
 }
+
 public class SecondApplet extends PApplet {
  
   public void setup() {
@@ -78,14 +79,16 @@ public class SecondApplet extends PApplet {
 
 
 public void input(String theText) { //P5
-  public void enteryourphrase(String theText) {
+
+  //public void enteryourphrase(String theText) {
   // automatically receives results from controller input
   println("a mf textfield event for controller 'input' : "+theText);//P5
    Table table = loadTable("zooMockUpCSV.csv","header");//P5
   //String s = table.getString(1, 1);   // s now has the value//P5
   //println(s);//P5
   timestamp =  nf(month(),2) + "-" + nf(day(),2)  + "-" + year()+ "-"  
-  + nf(hour(),2) + nf(minute(),2); /*+ nf(second(),2);*/
+  + nf(hour(),2) + nf(minute(),2); 
+  ///+ nf(second(),2);
   println(timestamp); //P5
   TableRow newRow = table.addRow(); //P5
 // Set the values of that row
@@ -95,9 +98,9 @@ newRow.setString("PHRASE", theText);//P5
 newRow.setString("TIMESTAMP", timestamp);//P5
 saveTable(table, "data/zooMockUpCSV.csv");//P5
 
-    }
-  }
-}
+    } 
+  } 
+
 
 
 
