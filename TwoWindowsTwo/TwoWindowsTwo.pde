@@ -12,18 +12,20 @@ String textValue = "";//P5
 String timestamp;//P5
 //int i;
 
- void setup() {
-   PFrame f = new PFrame(1500,800);
-  size(1500,800);
-  fill(150, 0, 130);
-  rect(10,20,30,40);
-  img_1 = loadImage("roar2.png");//P5
-  img_2 = loadImage("theQuestion.png");//P5
-  img_3 = loadImage("instructions.png");//P5
- frame.setTitle("first window");
-  f.setTitle("second window");
-  background(255);
-  PFont font = createFont("arial",20);//P5
+
+
+void setup() {
+  size(1500, 800, OPENGL);
+  cp5 = new ControlP5(this);
+  
+  // by calling function addControlFrame() a
+  // new frame is created and an instance of class
+  // ControlFrame is instanziated.
+  cf = addControlFrame("extra", 1080,720);
+
+  // add Controllers to the 'extra' Frame inside 
+  // the ControlFrame class setup() method below.
+   PFont font = createFont("arial",20);//P5
   Date d = new Date();//P5
   println("1 " + d.getTime());//P5
   
@@ -35,42 +37,33 @@ String timestamp;//P5
      .setFont(font)//P5
      .setFocus(true)//P5
      .setColor(color(255));//P5
-     textFont(font);//P5
+     textFont(font);//P5  
+  img_1 = loadImage("roar2.png");//P5
+  img_2 = loadImage("theQuestion.png");//P5
+  img_3 = loadImage("instructions.png");//P5
+  
 }
 
 void draw() {
-  //println(mouseX);
+ //println(mouseX);
   image(img_1, 5, 0);//P5
   image(img_2, 650,215);//P5
   image(img_3, 850,645);//P5
   fill(0,255,0);
   //text(cp5.get(Textfield.class,"input").getText(), 360,130);
-  text(textValue, 360,180);//P5
-}
-public void clear() {//P5
-  cp5.get(Textfield.class,"textValue").clear();//P5
-  
-}//P5
-
-void controlEvent(ControlEvent theEvent) { //P5
-  if(theEvent.isAssignableFrom(Textfield.class)) { //P5 
-    println("controlEvent: accessing a string from controller '"//P5
-            +theEvent.getName()+"': "//P5
-            +theEvent.getStringValue()//P5
-            );//P5
-  }//P5
-}
-
-public class PFrame extends JFrame {
-  public PFrame(int width, int height) {
-    setBounds(100, 100, width, height);
-    fill(255,0,0);
-    ellipse(40,50,100,100);
-    s = new SecondApplet();
-    add(s);
-    s.init();
-    show();
-    }
+  text(textValue, 360,180);//P5 
+  }
+ControlFrame addControlFrame(String theName, int theWidth, int theHeight) {
+  Frame f = new Frame(theName);
+  ControlFrame p = new ControlFrame(this, theWidth, theHeight);
+  f.add(p);
+  p.init();
+  f.setTitle(theName);
+  f.setSize(p.w, p.h);
+  f.setLocation(100, 100);
+  f.setResizable(false);
+  f.setVisible(true);
+  return p;
 }
 
 public void input(String theText) { //P5
@@ -94,14 +87,29 @@ newRow.setString("TIMESTAMP", timestamp);//P5
 saveTable(table, "data/zooMockUpCSV.csv");//P5
 
     } 
-    
-    public class SecondApplet extends PApplet {
- 
-  public void setup() {
- size (1080,720);
-  noStroke();
-  smooth();
-  }
+    public void clear() {//P5
+  cp5.get(Textfield.class,"textValue").clear();//P5
+  
+}//P5
+
+void controlEvent(ControlEvent theEvent) { //P5
+  if(theEvent.isAssignableFrom(Textfield.class)) { //P5 
+    println("controlEvent: accessing a string from controller '"//P5
+            +theEvent.getName()+"': "//P5
+            +theEvent.getStringValue()//P5
+            );//P5
+  }//P5
+
+
+
+
+// the ControlFrame class extends PApplet, so we 
+// are creating a new processing applet inside a
+// new frame with a controlP5 object loaded
+public class ControlFrame extends PApplet {
+
+  int w, h;
+  int abc = 100;
   float x11 = random(121,301); //ellipse(x11, y11,
   //float y11 = random(151,360);
   float x12 = random(121,301);
@@ -291,19 +299,24 @@ saveTable(table, "data/zooMockUpCSV.csv");//P5
   float yc59 = random(230,328);
   float xc60 = random(581,821);
   float yc60 = random(230,328);
+ 
   
   
-  /*
-  ellipse
-  
-  
-  */
   int f = 255;
   int fade11 = 0;
   int fadeRect = 0;
   int e = 0;
   int hozo; int numb;
   String xness; String yness; String linus; 
+  
+  public void setup() {
+    size(w, h,OPENGL);
+   //frameRate(25);
+   // cp5 = new ControlP5(this);
+    //cp5.addSlider("abc").setRange(0, 255).setPosition(10,10);
+   // cp5.addSlider("def").plugTo(parent,"def").setRange(0, 255).setPosition(10,30);
+  }
+
   void draw(){
   background(0);
   int show1 = 0;  int show2 = 0;  int show3 = 0;  int show4 = 0;  
@@ -506,11 +519,15 @@ saveTable(table, "data/zooMockUpCSV.csv");//P5
   //stroke(0);
  // strokeWeight(1.5);
   //use for target holes
+  
+  //This was already commented outbefore ControlPframe merge
 /*
   ellipse(xa, ya, 6, 6);
   ellipse(xb, yb, 6, 6);
   ellipse(xc, yc, 6, 6);
  */ 
+ 
+ //This was already commented outbefore ControlPframe merge
  /*
   line(x1,y1,xa,ya);
   line(x1,y1,xb,yb);
@@ -519,6 +536,8 @@ saveTable(table, "data/zooMockUpCSV.csv");//P5
   fill(f,15);
   ellipse(x1, y1, 70, 70);
   */
+  
+ 
   fill(0,fadeRect);
   rect(0,0,1080,720);
   fill(155,200,100,fade11);//fill(255,200,0,b);
@@ -542,6 +561,7 @@ saveTable(table, "data/zooMockUpCSV.csv");//P5
   text("I love the monkeys!", xc1 - 45, yc1 +10);
   text("I'm scared of monkeys", xc11 - 45, yc11 +10);
  
+ //This was already commented outbefore ControlPframe merge
   /*
   fill(255,e);
   noStroke(); 
@@ -549,7 +569,7 @@ saveTable(table, "data/zooMockUpCSV.csv");//P5
   fill(255);
 text("word", x1 - 20, y1 +10);
   */
-  }
+  } //this is a post-merge comment
   
   void mouseClicked() {
     //if (f == 25) {
@@ -562,34 +582,58 @@ text("word", x1 - 20, y1 +10);
   } else {
     fadeRect = 200;
   }
-  /*
+  
   if (mouseX < x11 + 25 && mouseX > x11 - 25 
      && mouseY < y11 + 25 && mouseY > y11 - 25 && fade11 == 200) {
     fade11 = 0;
      } else {
     fade11 = 200;
-    */
+   
     if (mouseX < x11 + 25 && mouseX > x11 - 25 
      && mouseY < y11 + 25 && mouseY > y11 - 25) {
     println(mouseX);println(mouseY);fade11 = 200;
      } 
      else {
     fade11 = 0;
-     }
-    /*
+     } 
+    /* //This was already commented outbefore ControlPframe merge
   if (fade11 == 200) {
     fade11 = 0;
   } else {
     fade11 = 200;
     */
   }
-  //if (e == 255) {
+  //if (e == 255) { //This (and all below) was already commented outbefore ControlPframe merge
     //e = 0;
   //} else {
    // e = 255;
   //}
   //}
 }
+  
+  private ControlFrame() {
+  }
+
+  public ControlFrame(Object theParent, int theWidth, int theHeight) {
+    parent = theParent;
+    w = theWidth;
+    h = theHeight;
+  }
+
+
+  public ControlP5 control() {
+    return cp5;
+  }
+  
+  
+  ControlP5 cp5;
+
+  Object parent;
+
+  
+}
+
+
 
 
    
