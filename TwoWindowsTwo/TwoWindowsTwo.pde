@@ -1,11 +1,13 @@
-import javax.swing.*;
-SecondApplet s;
+import java.awt.Frame;
+import java.awt.BorderLayout;
 import controlP5.*;//P5
 import java.util.Date;
+private ControlP5 cp5;//P5
+ControlFrame cf;
 PImage img_1; //P5
 PImage img_2; //P5
 PImage img_3;//P5
-ControlP5 cp5;//P5
+
 String textValue = "";//P5
 String timestamp;//P5
 //int i;
